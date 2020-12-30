@@ -15,6 +15,7 @@
             var socket = io.connect(url + "/dd");
             socket.on('msg', function(msg) {
                 $("#connected").html(msg.count);
+                console.log(msg);
             });
         });
     </script>

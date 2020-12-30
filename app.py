@@ -1,7 +1,7 @@
 from gevent import monkey
 import cgi
 import redis
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from engineio.payload import Payload
 
@@ -20,7 +20,17 @@ def main():
 
 @app.route('/track')
 def track():
-    socketio.emit('msg', {'count': 100}, namespace='/dd')
+    print(request.args.get('name'), request.args.get('mobile'))
+    data = {
+        'track': {
+            'name': request.args.get('name'),
+            'mobile': request.args.get('mobile'),
+            'parent_name': request.args.get('parent_name'),
+            'parent_mobile': request.args.get('parent_mobile'),
+            'image_url': request.args.get('image_url'),
+            'address': request.args.get('address')
+        }}
+    socketio.emit('msg', data, namespace='/dd')
     return render_template('track.html')
 
 
