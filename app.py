@@ -21,7 +21,7 @@ def main():
 @app.route('/track')
 def track():
     socketio.emit('msg', {'count': 100}, namespace='/dd')
-    return render_template('main.html')
+    return render_template('track.html')
 
 
 @app.route('/pymeetups/')
