@@ -18,6 +18,11 @@ def main():
     return render_template('main.html')
 
 
+@app.route('/track')
+def track():
+    socketio.emit('msg', {'count': 100}, namespace='/dd')
+    
+
 @app.route('/pymeetups/')
 def pymeetups():
     return render_template('pymeetups.html')
